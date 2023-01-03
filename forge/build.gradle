@@ -1,0 +1,68 @@
+plugins { id "com.github.johnrengelman.shadow" version "7.1.2" }
+architectury { forge() }
+
+loom {
+    mixin { defaultRefmapName = "examplemod.forge.refmap.json" }
+    forge {
+        mixinConfig "examplemod.forge.mixins.json"
+        mixinConfig "examplemod.mixins.json"
+    }
+}
+
+configurations {
+    common
+    shadowCommon
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+}
+
+dependencies {
+    forge "net.minecraftforge:forge:${rootProject.minecraft}-${parent.props.forge}"
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+}
+
+processResources {
+    def props = [
+            "id"                  : rootProject.id,
+            "name"                : rootProject.name,
+            "description"         : rootProject.description,
+            "author"              : rootProject.author,
+            "license"             : rootProject.license,
+            "websiteUrl"          : rootProject.website,
+            "issueTrackerUrl"     : rootProject.issues,
+            "forgeUpdateUrl"      : rootProject.updater,
+            "version"             : project.version,
+            "minecraftVersion"    : rootProject.minecraft,
+            "fabricVersion"       : rootProject.props.fabric,
+            "forgeVersion"        : rootProject.props.forge,
+    ]
+
+    inputs.properties props
+    filesMatching("META-INF/mods.toml") { expand props }
+}
+
+shadowJar {
+    exclude "fabric.mod.json"
+
+    configurations = [project.configurations.shadowCommon]
+    classifier "dev-shadow"
+}
+
+remapJar {
+    inputFile.set shadowJar.archiveFile
+    dependsOn shadowJar
+    classifier null
+}
+
+jar {
+    classifier "dev"
+    dependsOn processResources
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}

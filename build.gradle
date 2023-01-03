@@ -1,0 +1,54 @@
+plugins {
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
+}
+
+architectury { minecraft = rootProject.minecraft }
+
+// Read version-specific properties file
+project.ext.set("props", new Properties())
+file("props/${rootProject.minecraft}.properties").withInputStream { project.props.load(it) }
+
+println()
+println "Minecraft: ${rootProject.minecraft}"
+println "├── Parchment: ${project.props.mappings}"
+println "├── Fabric: ${project.props.fabric}"
+println "└── Forge: ${project.props.forge}"
+println()
+
+// Write build.properties with the current version
+new File(projectDir, "build.properties").text = String.format("MC_%s=\n", rootProject.minecraft.replace(".", "_"))
+
+subprojects {
+    apply plugin: "dev.architectury.loom"
+    loom { silentMojangMappingsLicense() }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft}"
+        mappings loom.layered() {
+            officialMojangMappings()
+            parchment("org.parchmentmc.data:parchment-${rootProject.minecraft}:${project.props.mappings}@zip")
+        }
+    }
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+
+    archivesBaseName = String.format("%s-%s", rootProject.id, rootProject.minecraft)
+    sourceCompatibility = 8
+    targetCompatibility = 8
+
+    repositories { maven { url "https://oss.sonatype.org/content/repositories/snapshots" } }
+    dependencies { annotationProcessor "systems.manifold:manifold-preprocessor:2022.1.33" }
+
+    java { withSourcesJar() }
+    tasks.withType(JavaCompile).tap {
+        configureEach {
+            options.encoding = "UTF-8"
+            options.release = 8
+            options.compilerArgs += ["-Xplugin:Manifold"]
+        }
+    }
+}

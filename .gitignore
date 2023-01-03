@@ -1,0 +1,14 @@
+# Editors and things
+.idea
+.vscode
+desktop.ini
+.DS_Store
+
+# Gradle build output & temp files
+build
+run
+.gradle
+.architectury-transformer
+
+# Special temporary file that contains current version for conditional checks in code (Manifold)
+build.properties

@@ -1,0 +1,6 @@
+architectury { common("fabric", "forge") }
+loom { mixin { defaultRefmapName = "examplemod.refmap.json" } }
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric}"
+}
