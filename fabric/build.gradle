@@ -1,6 +1,10 @@
 plugins { id "com.github.johnrengelman.shadow" version "7.1.2" }
 architectury { fabric() }
 
+loom {
+    mixin { defaultRefmapName = "examplemod.fabric.refmap.json" }
+}
+
 configurations {
     common
     shadowCommon
