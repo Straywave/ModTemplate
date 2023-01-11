@@ -6,6 +6,7 @@
   "refmap": "examplemod.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "client": [
+    "TitleScreenMixin"
   ],
   "mixins": [
   ],

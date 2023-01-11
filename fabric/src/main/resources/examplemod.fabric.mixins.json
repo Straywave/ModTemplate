@@ -3,6 +3,7 @@
   "package": "straywave.minecraft.examplemod.fabric.mixin",
   "refmap": "examplemod.fabric.refmap.json",
   "client": [
+    "SplashManagerMixin"
   ],
   "mixins": [
   ]

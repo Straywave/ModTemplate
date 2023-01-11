@@ -13,7 +13,9 @@
   "icon": "assets/examplemod/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": ["straywave.minecraft.examplemod.fabric.FabricMod"]
+    "main": ["straywave.minecraft.examplemod.fabric.Entrypoint"],
+    "client": ["straywave.minecraft.examplemod.fabric.EntrypointClient"],
+    "server": ["straywave.minecraft.examplemod.fabric.EntrypointDedicatedServer"]
   },
   "mixins": [
     "examplemod.mixins.json",
