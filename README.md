@@ -13,15 +13,17 @@ for the respective mod loader.
 Obviously, not all logic is the same across versions, so that's where Manifold comes in.
 
 [Manifold][1] is a neat little Gradle plugin that, among other things, adds a preprocessor to Java. It brings the C-like
-syntax of `#define`, `#if`, `#elif`, and `#endif` to Java.
+syntax of `#if`, `#elif`, `#else`, and `#endif` to Java.
 
-By default, there are 2 versions, 1.16.5 and 1.18.2. You can write version-specific code like so:
+By default, there are 3 versions, 1.16.5, 1.18.2, and 1.19.2. You can write version-specific code like so:
 
 ```c
 #if MC_1_16_5
 System.out.println("Hello, Minecraft 1.16!");
 #elif MC_1_18_2
 System.out.println("Hello, Minecraft 1.18!");
+#elif MC_1_19_2
+System.out.println("Hello, Minecraft 1.19!");
 #endif
 ```
 
@@ -34,7 +36,7 @@ So, in short, after cloning this repo:
 
 Some general usage guidance:
 - Don't touch `build.properties`. It is auto generated and should be synced with current mappings.
-- Use `-Pminecraft=1.16.5` or `-Pminecraft=1.18.2` to specify the target version on the command line.
+- Use `-Pminecraft=1.16.5`, (or `1.18.2`/`1.19.2`) to specify the target version on the command line.
 
 ## Adding a new version
 

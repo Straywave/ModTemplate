@@ -11,6 +11,8 @@ public class ExampleMod {
         LOGGER.info("This is Minecraft version 1.16.5!");
         #elif MC_1_18_2
         LOGGER.info("This is Minecraft version 1.18.2!");
+        #elif MC_1_19_2
+        LOGGER.info("This is Minecraft version 1.19.2!");
         #endif
     }
 }
