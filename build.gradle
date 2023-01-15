@@ -10,7 +10,7 @@ project.ext.set("props", new Properties())
 file("props/${rootProject.minecraft}.properties").withInputStream { project.props.load(it) }
 
 println()
-println "Minecraft: ${rootProject.minecraft}"
+println "Minecraft: ${rootProject.minecraft} (Java ${project.props.java})"
 println "├── Parchment: ${project.props.mappings}"
 println "├── Fabric: ${project.props.fabric}"
 println "└── Forge: ${project.props.forge}"
@@ -45,13 +45,13 @@ allprojects {
     java {
         withSourcesJar()
         sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.toVersion(project.props.java)
     }
 
     tasks.withType(JavaCompile).tap {
         configureEach {
             options.encoding = "UTF-8"
-            options.release.set 8
+            options.release.set Integer.parseInt(project.props.java)
             options.compilerArgs += ["-Xplugin:Manifold"]
         }
     }
