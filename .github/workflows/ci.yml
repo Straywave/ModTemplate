@@ -1,0 +1,26 @@
+name: "CI"
+on: ["push", "workflow_dispatch"]
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+
+      - name: "Setup Java"
+        uses: actions/setup-java@v3
+        with: { distribution: "temurin", java-version: "17", cache: "gradle" }
+
+      - name: "Compile Mod"
+        run: "./build.sh"
+
+      - name: "Upload Fabric Artifacts"
+        uses: actions/upload-artifact@v3
+        with: { name: "Fabric", path: "fabric/build/libs" }
+
+      - name: "Upload Forge Artifacts"
+        uses: actions/upload-artifact@v3
+        with: { name: "Forge", path: "forge/build/libs" }
