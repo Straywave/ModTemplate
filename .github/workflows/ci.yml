@@ -12,7 +12,7 @@ jobs:
 
       - name: "Setup Java"
         uses: actions/setup-java@v3
-        with: { distribution: "temurin", java-version: "17", cache: "gradle" }
+        with: { distribution: "temurin", java-version: "18", cache: "gradle" }
 
       - name: "Compile Mod"
         run: "./build.sh"
