@@ -3,8 +3,12 @@ on: ["push", "workflow_dispatch"]
 
 jobs:
   build:
-    name: "Build"
+    name: "Build for ${{ matrix.mc }}"
     runs-on: "ubuntu-latest"
+
+    strategy:
+      fail-fast: false
+      matrix: { mc: ["1.16.5", "1.18.2", "1.19.2"] }
 
     steps:
       - name: "Checkout Repository"
@@ -14,13 +18,13 @@ jobs:
         uses: actions/setup-java@v3
         with: { distribution: "temurin", java-version: "18", cache: "gradle" }
 
-      - name: "Compile Mod"
-        run: "./build.sh"
+      - name: "Compile Mod for ${{ matrix.mc }}"
+        run: "./gradlew build -Pminecraft=${{ matrix.mc }}"
 
       - name: "Upload Fabric Artifacts"
         uses: actions/upload-artifact@v3
-        with: { name: "Fabric", path: "fabric/build/libs" }
+        with: { name: "Fabric ${{ matrix.mc }}", path: "fabric/build/libs" }
 
       - name: "Upload Forge Artifacts"
         uses: actions/upload-artifact@v3
-        with: { name: "Forge", path: "forge/build/libs" }
+        with: { name: "Forge ${{ matrix.mc }}", path: "forge/build/libs" }
