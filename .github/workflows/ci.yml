@@ -19,7 +19,7 @@ jobs:
         with: { distribution: "temurin", java-version: "18", cache: "gradle" }
 
       - name: "Compile Mod for ${{ matrix.mc }}"
-        run: "./gradlew build -Pminecraft=${{ matrix.mc }}"
+        run: "./gradlew build --no-daemon -Pminecraft=${{ matrix.mc }}"
 
       - name: "Upload Fabric Artifacts"
         uses: actions/upload-artifact@v3
