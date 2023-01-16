@@ -25,7 +25,7 @@ dependencies {
 processResources {
     def props = [
             "id"                  : rootProject.id,
-            "name"                : rootProject.name,
+            "name"                : rootProject.displayname,
             "description"         : rootProject.description,
             "author"              : rootProject.author,
             "license"             : rootProject.license,
