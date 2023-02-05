@@ -19,7 +19,14 @@ jobs:
 
       - name: "Setup Java"
         uses: actions/setup-java@v3
-        with: { distribution: "temurin", java-version: "18", cache: "gradle" }
+        with: { distribution: "temurin", java-version: "19" }
+
+      - name: "Setup Cache"
+        uses: actions/cache@v3
+        with:
+          path: "~/.gradle/caches\n~/.gradle/wrapper"
+          key: "${{ matrix.mc }}-${{ hashFiles('**/*.gradle*') }}"
+          restore-keys: "${{ matrix.mc }}-"
 
       - name: "Compile Mod for ${{ matrix.mc }}"
         run: "./gradlew build --no-daemon -Pminecraft=${{ matrix.mc }}"
