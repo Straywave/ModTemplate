@@ -2,7 +2,8 @@ Straywave's Mod Template
 ========================
 
 A template that lets you build Minecraft mods for multiple versions and multiple loaders at the same time. Note that
-Architectury API is *not* included, the only default dependency is Fabric API (on Fabric, obviously).
+Architectury API is *not* included, the only default dependency is Fabric API (on Fabric, obviously). A GitHub Workflow
+is also included to help automate building and testing for pull requests.
 
 ## Usage
 
