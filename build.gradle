@@ -40,7 +40,7 @@ allprojects {
     archivesBaseName = String.format("%s-%s", rootProject.id, rootProject.minecraft)
 
     repositories { maven { url "https://oss.sonatype.org/content/repositories/snapshots" } }
-    dependencies { annotationProcessor "systems.manifold:manifold-preprocessor:2022.1.38" }
+    dependencies { annotationProcessor "systems.manifold:manifold-preprocessor:2023.1.4" }
 
     java {
         withSourcesJar()
