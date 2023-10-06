@@ -12,11 +12,9 @@ configurations {
     runtimeClasspath.extendsFrom common
 }
 
-def mcFabricVer = rootProject.minecraft == "1.16.5" ? "1.16" : rootProject.minecraft
-
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric}"
-    modApi "net.fabricmc.fabric-api:fabric-api:${parent.props.fabric}+${mcFabricVer}"
+    modApi "net.fabricmc.fabric-api:fabric-api:${parent.props.fabric}+${rootProject.minecraft}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
@@ -24,18 +22,18 @@ dependencies {
 
 processResources {
     def props = [
-            "id"                  : rootProject.id,
-            "name"                : rootProject.displayname,
-            "description"         : rootProject.description,
-            "author"              : rootProject.author,
-            "license"             : rootProject.license,
-            "websiteUrl"          : rootProject.website,
-            "issueTrackerUrl"     : rootProject.issues,
-            "forgeUpdateUrl"      : rootProject.updater,
-            "version"             : project.version,
-            "minecraftVersion"    : rootProject.minecraft,
-            "fabricVersion"       : rootProject.props.fabric,
-            "forgeVersion"        : rootProject.props.forge,
+            "id"              : rootProject.id,
+            "name"            : rootProject.displayname,
+            "description"     : rootProject.description,
+            "author"          : rootProject.author,
+            "license"         : rootProject.license,
+            "websiteUrl"      : rootProject.website,
+            "issueTrackerUrl" : rootProject.issues,
+            "forgeUpdateUrl"  : rootProject.updater,
+            "version"         : project.version,
+            "minecraftVersion": rootProject.minecraft,
+            "fabricVersion"   : rootProject.props.fabric,
+            "forgeVersion"    : rootProject.props.forge,
     ]
 
     inputs.properties props

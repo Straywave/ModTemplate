@@ -4,7 +4,7 @@
   "plugin": "straywave.minecraft.examplemod.MixinPlugin",
   "minVersion": "0.8",
   "refmap": "examplemod.refmap.json",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "client": [
     "TitleScreenMixin"
   ],

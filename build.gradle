@@ -1,6 +1,6 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.0.+" apply false
+    id "dev.architectury.loom" version "1.2.+" apply false
 }
 
 architectury { minecraft = rootProject.minecraft }
@@ -40,7 +40,7 @@ allprojects {
     archivesBaseName = String.format("%s-%s", rootProject.id, rootProject.minecraft)
 
     repositories { maven { url "https://oss.sonatype.org/content/repositories/snapshots" } }
-    dependencies { annotationProcessor "systems.manifold:manifold-preprocessor:2023.1.4" }
+    dependencies { annotationProcessor "systems.manifold:manifold-preprocessor:2023.1.28" }
 
     java {
         withSourcesJar()

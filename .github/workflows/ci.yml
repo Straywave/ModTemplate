@@ -1,6 +1,6 @@
 name: "CI"
 on:
-  pull_request: { types: [opened, reopened] }
+  pull_request: { types: [ opened, reopened ] }
   push:
   workflow_dispatch:
 
@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix: { mc: ["1.16.5", "1.18.2", "1.19.2"] }
+      matrix: { mc: [ "1.18.2", "1.19.2", "1.20.1" ] }
 
     steps:
       - name: "Checkout Repository"
