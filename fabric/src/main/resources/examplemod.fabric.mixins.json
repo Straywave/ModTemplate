@@ -1,7 +1,6 @@
 {
   "parent": "examplemod.mixins.json",
   "package": "straywave.minecraft.examplemod.fabric.mixin",
-  "refmap": "examplemod.fabric.refmap.json",
   "client": [
     "SplashManagerMixin"
   ],

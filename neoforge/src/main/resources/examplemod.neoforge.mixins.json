@@ -1,6 +1,6 @@
 {
   "parent": "examplemod.mixins.json",
-  "package": "straywave.minecraft.examplemod.forge.mixin",
+  "package": "straywave.minecraft.examplemod.neoforge.mixin",
   "client": [
     "SplashManagerMixin"
   ],

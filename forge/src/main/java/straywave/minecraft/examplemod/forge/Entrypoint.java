@@ -5,7 +5,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import straywave.minecraft.examplemod.ExampleMod;
 
-@Mod("examplemod")
+@Mod(ExampleMod.MOD_ID)
 public class Entrypoint {
     public Entrypoint() {
         // Code here will run on both physical client and server.

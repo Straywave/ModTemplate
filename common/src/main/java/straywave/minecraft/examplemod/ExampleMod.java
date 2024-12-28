@@ -4,7 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ExampleMod {
-    public static Logger LOGGER = LogManager.getLogger("examplemod");
+    public static final String MOD_ID = "examplemod";
+    public static Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static void init() {
         #if MC_1_18_2

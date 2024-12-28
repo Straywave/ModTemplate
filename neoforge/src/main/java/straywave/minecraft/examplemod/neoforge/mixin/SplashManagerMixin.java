@@ -1,4 +1,4 @@
-package straywave.minecraft.examplemod.fabric.mixin;
+package straywave.minecraft.examplemod.neoforge.mixin;
 
 import net.minecraft.client.gui.components.SplashRenderer;
 import net.minecraft.client.resources.SplashManager;
@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class SplashManagerMixin {
     @Inject(method = "getSplash", at = @At("HEAD"), cancellable = true)
     private void setSplash(CallbackInfoReturnable<SplashRenderer> cir) {
-        cir.setReturnValue(new SplashRenderer("§7ExampleMod Fabric!"));
+        cir.setReturnValue(new SplashRenderer("§6ExampleMod NeoForge!"));
     }
 }

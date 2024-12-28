@@ -1,10 +1,6 @@
 plugins { id "com.github.johnrengelman.shadow" version "7.1.2" }
 architectury { fabric() }
 
-loom {
-    mixin { defaultRefmapName = "examplemod.fabric.refmap.json" }
-}
-
 configurations {
     common
     shadowCommon
@@ -34,6 +30,7 @@ processResources {
             "minecraftVersion": rootProject.minecraft,
             "fabricVersion"   : rootProject.props.fabric,
             "forgeVersion"    : rootProject.props.forge,
+            "neoForgeVersion" : rootProject.props.neoforge,
     ]
 
     inputs.properties props
